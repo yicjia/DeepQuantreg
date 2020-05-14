@@ -19,6 +19,34 @@ Download a local copy of DeepSurv and install from the directory:
 
 Tensorflow, Keras, lifelines, sklearn, and all of their respective dependencies. 
 
+## Example
+
+First, open Python and import the pacakge:
+
+    from DeepQuantreg import deep_quantreg as dq
+    import pandas as pd
+
+Then, read in the datasets and organize them into DeepQuantreg form. 
+
+    train_dataset_fp = "./data/traindata.csv"
+    train_df = pd.read_csv(train_dataset_fp)
+    train_df = dq.organize_data(train_df,time="OT",event="ind",trt="x2")
+
+    test_dataset_fp = "./data/testdata.csv"
+    test_df = pd.read_csv(test_dataset_fp)
+    test_df = dq.organize_data(test_df,time="OT",event="ind",trt="x2")
+
+
+DeepQuantreg can be trained and predict using the following code: 
+
+    model = dq.deep_quantreg(train_df,test_df,layer=2,node=300,n_epoch=50,bsize=64,acfn="sigmoid",opt="Adam",tau=0.5,verbose=0)
+
+It prints out the C-index and MSE. However, you can also get them using the code:
+    
+    ci = dq.get_ci(test_df["Y"],model["test_pred"],test_df["E"])
+    MSE = dq.get_mse(test_df["Y"],model["test_pred"],test_df["E"])
+
+
 ## Function: organize_data
 
 ### Usage
@@ -72,29 +100,3 @@ get_mse returns the MSE between the predicted quantiles and the observed follow-
 
 
 
-## Example
-
-First, install the pacakge:
-
-    from DeepQuantreg import deep_quantreg as dq
-    import pandas as pd
-
-Then, read in the datasets and organize them into DeepQuantreg form. 
-
-    train_dataset_fp = "./data/traindata.csv"
-    train_df = pd.read_csv(train_dataset_fp)
-    train_df = dq.organize_data(train_df,time="OT",event="ind",trt="x2")
-
-    test_dataset_fp = "./data/testdata.csv"
-    test_df = pd.read_csv(test_dataset_fp)
-    test_df = dq.organize_data(test_df,time="OT",event="ind",trt="x2")
-
-
-DeepQuantreg can be trained and predict using the following code: 
-
-    model = dq.deep_quantreg(train_df,test_df,layer=2,node=300,n_epoch=50,bsize=64,acfn="sigmoid",opt="Adam",tau=0.5,verbose=0)
-
-It prints out the C-index and MSE. However, you can also get them using the code:
-    
-    ci = dq.get_ci(test_df["Y"],model["test_pred"],test_df["E"])
-    MSE = dq.get_mse(test_df["Y"],model["test_pred"],test_df["E"])
