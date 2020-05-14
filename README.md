@@ -57,6 +57,7 @@ deep_quantreg returns a dictionary containing "train_pred": the predicted quanti
 
 ### Usage
 get_ci(obsT, predT, delta)
+
 get_mse(obsT, predT, delta)
 
 ### Arguments
@@ -66,6 +67,7 @@ get_mse(obsT, predT, delta)
 
 ### Values
 get_ci returns the C-index between the predicted quantiles and the observed follow-up time.
+
 get_mse returns the MSE between the predicted quantiles and the observed follow-up time.
 
 
