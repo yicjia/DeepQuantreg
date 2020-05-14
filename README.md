@@ -26,9 +26,9 @@ organize_data(df,time="OT",event="ind",trt="x2")
 
 ### Arguments
 * *df* :	the input dataset. Should contain a time column, a event indicator column and columns of covaraites 
-* *time* :	the name of the follow-up time
-* *event* :	the name of the event indicator
-* *trt* :	the name of the treatment group if you want to compute different KM estimators for different groups. The default is None.
+* *time* :	the follow-up time
+* *event* :	the event indicator
+* *trt* :	the treatment group if you want to compute different KM estimators for different groups. The default is None.
 
 ### Values
 organize_data returns a dictionary containing "Y": the follow-up time, "E": the event indicator, "X": the covariates matrix, and "W": IPCW weights
