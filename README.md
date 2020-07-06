@@ -9,7 +9,7 @@ DeepQuantreg shows that the deep learning method could be flexible enough to pre
 
 ### From source
 
-Download a local copy of DeepSurv and install from the directory:
+Download a local copy of DeepQuantreg and install from the directory:
 
 	git clone https://github.com/yicjia/DeepQuantreg.git
 	cd DeepQuantreg
@@ -41,7 +41,7 @@ DeepQuantreg can be trained and predict using the following code:
 
     model = dq.deep_quantreg(train_df,test_df,layer=2,node=300,n_epoch=50,bsize=64,acfn="sigmoid",opt="Adam",tau=0.5,verbose=0)
 
-It prints out the C-index and MSE. However, you can also get them using the code:
+It prints out the C-index and Modified MSE. However, you can also get them using the code:
     
     ci = dq.get_ci(test_df["Y"],model["test_pred"],test_df["E"])
     MSE = dq.get_mse(test_df["Y"],model["test_pred"],test_df["E"])
@@ -94,9 +94,8 @@ get_mse(obsT, predT, delta)
 * *delta* :	the event indicator, "E" from organize_data().
 
 ### Values
-get_ci returns the C-index between the predicted quantiles and the observed follow-up time.
+get_ci returns the C-index between the predicted quantiles and the observed event time.
 
-get_mse returns the MSE between the predicted quantiles and the observed follow-up time.
-
+get_mse returns the MSE between the predicted quantiles and the observed event time.
 
 
