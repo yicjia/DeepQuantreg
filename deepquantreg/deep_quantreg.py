@@ -27,7 +27,7 @@ def heythere():
    
 def get_weights(time, delta):
     kmf = KaplanMeierFitter()
-    kmf.fit(durations = time, event_observed = delta)
+    kmf.fit(durations = time, event_observed = 1-delta)
     km = np.array(kmf.survival_function_.KM_estimate)
     n = np.shape(time)[0]
     nkm = np.shape(km)[0]
