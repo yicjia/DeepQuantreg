@@ -34,7 +34,7 @@ def get_weights(time, delta):
     if n != nkm:
         km = km[:-1]
     km[km == 0] = 0.005
-    w = np.array(delta/km)
+    w = np.array(delta/(n*km))
     return w
 
 
