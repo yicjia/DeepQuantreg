@@ -22,8 +22,6 @@ from lifelines import KaplanMeierFitter
 from sklearn import preprocessing
 
 
-def heythere():
-    print("hey there")
    
 def get_weights(time, delta):
     kmf = KaplanMeierFitter()
