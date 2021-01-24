@@ -25,12 +25,12 @@ from sklearn import preprocessing
    
 def get_weights(time, delta):
     kmf = KaplanMeierFitter()
-    kmf.fit(durations = time, event_observed = 1-delta)
+    kmf.fit(durations = time, event_observed = 1-delta, timeline = time)
     km = np.array(kmf.survival_function_.KM_estimate)
-    n = np.shape(time)[0]
-    nkm = np.shape(km)[0]
-    if n != nkm:
-        km = km[:-1]
+    #n = np.shape(time)[0]
+    #nkm = np.shape(km)[0]
+    #if n != nkm:
+    #    km = km[:-1]
     km[km == 0] = 0.005
     w = np.array(delta/(n*km))
     return w
@@ -60,8 +60,7 @@ def huber(y_true, y_pred, eps=0.001):
     
 def weighted_loss(weights,tau, eps=0.001):
     def loss(y_true, y_pred):
-        e = huber(y_true, tf.math.exp(y_pred))
-        #e = y_true - tf.math.exp(y_pred)
+        e = huber(y_true, y_pred)
         e = weights*e
         return K.mean(K.maximum(tau*e,(tau-1)*e))   
     return loss
@@ -132,7 +131,7 @@ def deep_quantreg(train_df,test_df,layer=2,node=300,n_epoch=100,bsize=64,acfn="s
         model.add(Dense(1, activation = 'linear')) # Output
     
     model.compile(loss = weighted_loss(W_train, tau), metrics=['mse'],optimizer = opt)
-    model.fit(X_train,Y_train,verbose = verbose, epochs = n_epoch, batch_size = bsize)
+    model.fit(X_train,np.log(Y_train),verbose = verbose, epochs = n_epoch, batch_size = bsize)
 
     Qpred = np.exp(model.predict(X_train))
     Qpred = np.reshape(Qpred, n1)
