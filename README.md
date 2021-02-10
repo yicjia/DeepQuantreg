@@ -57,21 +57,6 @@ It prints our the C-index and MSE, but you can also get them by calling:
     result.mse
 
 
-## Function: organize_data
-
-### Usage
-organize_data(df,time,event,trt)
-
-### Arguments
-* *df* :	the input dataset. Should contain a time column, a event indicator column and columns of covaraites 
-* *time* :	the follow-up time
-* *event* :	the event indicator
-* *trt* :	the treatment group if you want to compute different KM estimators for different groups. The default is None.
-
-### Values
-organize_data returns a dictionary containing "Y": the follow-up time, "E": the event indicator, "X": the covariates matrix, and "W": IPCW weights
-
-
 ## Function: deep_quantreg
 
 ### Usage
@@ -99,4 +84,19 @@ deep_quantreg returns a objects containing
 * *mse* :	the MSE between the predicted quantiles and the observed event time over event observations.
 
 
+
+
+## Function: organize_data
+
+### Usage
+organize_data(df,time,event,trt)
+
+### Arguments
+* *df* :	the input dataset. Should contain a time column, a event indicator column and columns of covaraites 
+* *time* :	the follow-up time
+* *event* :	the event indicator
+* *trt* :	the treatment group if you want to compute different KM estimators for different groups. The default is None.
+
+### Values
+organize_data returns a dictionary containing "Y": the follow-up time, "E": the event indicator, "X": the covariates matrix, and "W": IPCW weights
 
