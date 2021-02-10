@@ -47,14 +47,14 @@ DeepQuantreg can be trained and predict using the following code:
 
 You can get the predicted quantiles and its prediction interval by calling:
     
-    results.predQ
-    results.lower
-    results.upper
+    result.predQ
+    result.lower
+    result.upper
     
 It prints our the C-index and MSE, but you can also get them by calling:
     
-    results.ci
-    results.mse
+    result.ci
+    result.mse
 
 
 ## Function: organize_data
