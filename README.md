@@ -76,7 +76,7 @@ deep_quantreg(train_df,test_df,layer=2,node=300,n_epoch=50,bsize=64,acfn="sigmoi
 * *tau* :	the quantiles, the default is the median (0.5).
 
 ### Values
-deep_quantreg returns a objects containing 
+deep_quantreg returns a object containing 
 * *predQ* :	the predicted conditional quantiles.
 * *lower* :	the lower bound of the 95 percent prediction interval
 * *upper* :	the upper bound of the 95 percent prediction interval
