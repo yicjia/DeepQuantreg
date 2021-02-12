@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='DeepQuantreg',
-      version='0.1',
+      version='0.2',
       description='Deep Censored Quantile Regression',
       url='http://github.com/yij22/DeepQuantreg',
       author='Yichen Jia',
@@ -10,6 +10,6 @@ setup(name='DeepQuantreg',
       packages=['DeepQuantreg'],
       install_requires=[
           'pandas','numpy','tensorflow','keras',
-          'lifelines','sklearn'
+          'lifelines','sklearn','scipy'
       ],
       zip_safe=False)
