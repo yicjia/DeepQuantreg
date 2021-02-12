@@ -26,6 +26,7 @@ Tensorflow, Keras, lifelines, sklearn, and all of their respective dependencies.
 
 First, open Python and import the pacakge:
 
+    from DeepQuantreg import utils as utils
     from DeepQuantreg import deep_quantreg as dq
     import pandas as pd
 
@@ -33,11 +34,11 @@ Then, read in the datasets and organize them into DeepQuantreg form.
 
     train_dataset_fp = "./data/traindata.csv"
     train_df = pd.read_csv(train_dataset_fp)
-    train_df = dq.organize_data(train_df,time="OT",event="ind",trt="x2")
+    train_df = utils.organize_data(train_df,time="OT",event="ind",trt="x2")
 
     test_dataset_fp = "./data/testdata.csv"
     test_df = pd.read_csv(test_dataset_fp)
-    test_df = dq.organize_data(test_df,time="OT",event="ind",trt="x2")
+    test_df = utils.organize_data(test_df,time="OT",event="ind",trt="x2")
 
 
 DeepQuantreg can be trained and predict using the following code: 
@@ -55,6 +56,20 @@ It prints our the C-index and MSE, but you can also get them by calling:
     
     result.ci
     result.mse
+
+It is recommanded to run hyperparameter tuning before training your model. In DeepQuantreg, grid search method is used for hyperparameter tuning. Specify your search space, for example:
+
+    layers = [2,3]
+    nodes=[100,300]
+    dropout=[0.2,0.4]
+    activation = ["sigmoid","relu"]
+    optimizer = ["adam","nadam"]
+    bsize = [64,128]
+    n_epochs = [50,100,200]
+    
+    from DeepQuantreg import hyperparameter_tuning as tune
+    tune.hyper_tuning(train_df,layers,nodes,dropout,activation, optimizer, bsize, n_epochs, n_cv=5, tau=0.5)
+
 
 
 ## Function: deep_quantreg
@@ -83,6 +98,27 @@ deep_quantreg returns a object containing
 * *ci* :	the C-index between the predicted quantiles and the observed event time.
 * *mse* :	the MSE between the predicted quantiles and the observed event time over event observations.
 
+
+## Function: hyper_tuning
+
+### Usage
+hyper_tuning(train_df,layers,nodes,dropout,activation, optimizer, bsize, n_epochs, n_cv=5, n_jobs=1, tau=0.5)
+
+### Arguments
+* *train_df* :	the training dataset after organize into DeepQuantreg form.
+* *layers* :	the search space for number of hidden layers.
+* *nodes* :	the search space for the number of hidden nodes for each layer. 
+* *dropout* :	the search space for the dropout rate.
+* *activation* :	the search space for the activation function.
+* *optimizer* :	the search space for the optimizor
+* *bsize* :	the search space for the batch size.
+* *n_epoch* :	the search space for the number of epochs. 
+* *n_cv* :	number of fold cross validation, the default is 5. 
+* *n_jobs* :	number of jobs to run in parallel, the default is 1.
+* *tau* :	the quantiles, the default is the median (0.5).
+
+### Values
+hyper_tuning returns a dictionary of the best estimator that was chosen by the search
 
 
 
