@@ -2,7 +2,7 @@
 
 DeepQuantreg implements a deep neural network to the quantile regression for survival data with right censoring, which is adjusted by the inverse of the estimated censoring distribution in the check function.
 
-DeepQuantreg shows that the deep learning method could be flexible enough to predict nonlinear patterns more accurately compared to the traditional quantile regression even in low-dimensional data, emphasizing on practicality of the method for censored survival data. 
+DeepQuantreg shows that the deep learning method could be flexible enough to predict nonlinear patterns more accurately compared to the traditional quantile regression, emphasizing practicality of the method for censored survival data. 
 
 Reference: Jia, Y., & Jeong, J. H. (2020). Deep Learning for Quantile Regression: DeepQuantreg. arXiv preprint arXiv:2007.07056.
 - Paper: https://arxiv.org/abs/2007.07056
