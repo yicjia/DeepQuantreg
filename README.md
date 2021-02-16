@@ -75,13 +75,14 @@ It is recommanded to run hyperparameter tuning before training your model. In De
     tune.hyper_tuning(train_df,layers,nodes,dropout,activation, optimizer, bsize, n_epochs, n_cv=5, tau=0.5)
 
 
+##
 
 ## Function: deep_quantreg
 
 ### Usage
 deep_quantreg(train_df,test_df,layer=2,node=300,n_epoch=50,bsize=64,acfn="sigmoid",opt="Adam",uncertainty=True,dropout=0.2,tau=0.5,verbose=0)
 
-### Arguments
+### Parameters
 * *train_df* :	the training dataset after organize into DeepQuantreg form.
 * *test_df* :	the test dataset after organize into DeepQuantreg form.
 * *layer* :	the number of hidden layers, the defualt is 2. 
@@ -94,8 +95,7 @@ deep_quantreg(train_df,test_df,layer=2,node=300,n_epoch=50,bsize=64,acfn="sigmoi
 * *dropout* :	the dropout rate, the default is 0.2
 * *tau* :	the quantiles, the default is the median (0.5).
 
-### Values
-deep_quantreg returns a object containing 
+### Attributes
 * *predQ* :	the predicted conditional quantiles.
 * *lower* :	the lower bound of the 95 percent prediction interval
 * *upper* :	the upper bound of the 95 percent prediction interval
@@ -108,7 +108,7 @@ deep_quantreg returns a object containing
 ### Usage
 hyper_tuning(train_df,layers,nodes,dropout,activation, optimizer, bsize, n_epochs, n_cv=5, n_jobs=1, tau=0.5)
 
-### Arguments
+### Parameters
 * *train_df* :	the training dataset after organize into DeepQuantreg form.
 * *layers* :	the search space for number of hidden layers.
 * *nodes* :	the search space for the number of hidden nodes for each layer. 
@@ -121,7 +121,7 @@ hyper_tuning(train_df,layers,nodes,dropout,activation, optimizer, bsize, n_epoch
 * *n_jobs* :	number of jobs to run in parallel, the default is 1.
 * *tau* :	the quantiles, the default is the median (0.5).
 
-### Values
+### Returns
 hyper_tuning returns a dictionary of the best estimator that was chosen by the search
 
 
@@ -131,12 +131,12 @@ hyper_tuning returns a dictionary of the best estimator that was chosen by the s
 ### Usage
 organize_data(df,time,event,trt)
 
-### Arguments
+### Parameters
 * *df* :	the input dataset. Should contain a time column, a event indicator column and columns of covaraites 
 * *time* :	the follow-up time
 * *event* :	the event indicator
 * *trt* :	the treatment group if you want to compute different KM estimators for different groups. The default is None.
 
-### Values
+### Returns
 organize_data returns a dictionary containing "Y": the follow-up time, "E": the event indicator, "X": the covariates matrix, and "W": IPCW weights
 
