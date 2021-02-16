@@ -59,6 +59,8 @@ It prints our the C-index and MSE, but you can also get them by calling:
 
 ![PIplot](https://user-images.githubusercontent.com/58962571/108008760-19669a00-6fcf-11eb-803b-478652281d77.PNG)
 
+## Hyperparameter tuning
+
 It is recommanded to run hyperparameter tuning before training your model. In DeepQuantreg, grid search method is used for hyperparameter tuning. Specify your search space, for example:
 
     layers = [2,3]
