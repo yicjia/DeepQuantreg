@@ -74,7 +74,13 @@ def get_ql(obsT, predT, delta, tau, u):
     ql = np.mean(temp)
     return ql
 
-
+def get_hql(obsT, predT, delta, tau, u, eps=0.001):
+    t = np.minimum(obsT,np.log(u))
+    e = t - predT
+    e2 = np.where(abs(e)<eps, e**2/(2*eps), abs(e) - 0.5*eps)
+    temp = np.maximum(tau*e2,(tau-1)*e2)
+    hql = np.mean(temp)
+    return hql
 
 def organize_data (df,time="OT",event="ind",trt=None):
     E=np.array(df[event])
