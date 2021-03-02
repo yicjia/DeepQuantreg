@@ -69,15 +69,18 @@ def get_ci(obsT, predT, delta):
 
 def get_ql(obsT, predT, delta, tau, u):
     t = np.minimum(obsT,u)
-    e = t - predT
+    w = get_weights(obsT, delta)
+    e = (t - predT)*w
     temp = np.maximum(tau*e,(tau-1)*e)
     ql = np.mean(temp)
     return ql
 
 def get_hql(obsT, predT, delta, tau, u, eps=0.001):
-    t = np.minimum(obsT,np.log(u))
+    t = np.minimum(obsT,u)
+    w = get_weights(obsT, delta)
     e = t - predT
     e2 = np.where(abs(e)<eps, e**2/(2*eps), abs(e) - 0.5*eps)
+    e2 = e2*w
     temp = np.maximum(tau*e2,(tau-1)*e2)
     hql = np.mean(temp)
     return hql
