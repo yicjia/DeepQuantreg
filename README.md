@@ -20,7 +20,7 @@ Download a local copy of DeepQuantreg and install from the directory:
 
 ### Dependencies
 
-Tensorflow, Keras, lifelines, sklearn, and all of their respective dependencies. 
+Tensorflow, Keras, lifelines, sklearn, scipy, and all of their respective dependencies. 
 
 ## Example
 
