@@ -59,7 +59,7 @@ def deep_quantreg(train_df,test_df,layer=2,node=300,n_epoch=100,bsize=64,acfn="s
             model.add(Dense(node, input_dim = X_train.shape[1], activation = acfn)) # Hidden 1
             model.add(Dropout(dropout))
         else:
-           model.add(Dense(node, activation = acfn)) # Hidden 2 
+           model.add(Dense(node, activation = acfn))  
            model.add(Dropout(dropout))
            
     model.add(Dense(1, activation = 'linear')) # Output
