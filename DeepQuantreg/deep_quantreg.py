@@ -9,8 +9,8 @@ Created on Tue May 12 17:57:38 2020
 
 import numpy as np
 from keras import backend as K
-from keras.models import Sequential
-from keras.layers import Dense, Dropout
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense, Dropout
 import scipy.stats
 
 from .utils import weighted_loss, get_ci, get_mse
