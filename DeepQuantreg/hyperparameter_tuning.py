@@ -40,7 +40,7 @@ def hyper_tuning(train_df,layers,nodes,dropout,activation, optimizer, bsize, n_e
 
     model = KerasRegressor(build_fn = create_model,verbose = 0)
     param_grid = dict(layers=layers, nodes=nodes, activation = activation, optimizer = optimizer, dropout=dropout, batch_size = bsize, epochs=n_epochs)
-    grid = GridSearchCV(estimator=model,param_grid=param_grid,cv = 2, n_jobs=1)
+    grid = GridSearchCV(estimator=model,param_grid=param_grid,cv = n_cv, n_jobs=n_jobs)
     grid_result = grid.fit(X_train,np.log(Y_train))
     #print(grid_result.best_score_,grid_result.best_params_)
     return(grid_result.best_params_)
