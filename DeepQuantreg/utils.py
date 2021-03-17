@@ -7,7 +7,7 @@ Created on Wed Feb 10 21:23:40 2021
 """
 import tensorflow as tf
 import numpy as np
-from keras import backend as K
+from tensorflow.python.keras import backend as K
 
 from lifelines.utils import concordance_index
 from lifelines import KaplanMeierFitter
@@ -38,10 +38,10 @@ def get_group_weights(time, delta, trt):
 
 def huber(y_true, y_pred, eps=0.001):
   error = y_true - y_pred
-  cond  = tf.keras.backend.abs(error) < eps
+  cond  = K.abs(error) < eps
 
-  squared_loss = tf.keras.backend.square(error) / (2*eps)
-  linear_loss  = tf.keras.backend.abs(error) - 0.5 * eps
+  squared_loss = K.square(error) / (2*eps)
+  linear_loss  = K.abs(error) - 0.5 * eps
 
   return tf.where(cond, squared_loss, linear_loss)
 
