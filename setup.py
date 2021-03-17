@@ -1,9 +1,9 @@
 from setuptools import setup
 
 setup(name='DeepQuantreg',
-      version='0.2',
+      version='0.1',
       description='Deep Censored Quantile Regression',
-      url='http://github.com/yicjia/DeepQuantreg',
+      url='https://github.com/yicjia/DeepQuantreg',
       author='Yichen Jia',
       author_email='yij22@pitt.edu',
       license='MIT',
