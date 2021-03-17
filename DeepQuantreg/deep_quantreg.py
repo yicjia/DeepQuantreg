@@ -8,7 +8,8 @@ Created on Tue May 12 17:57:38 2020
 
 
 import numpy as np
-from keras import backend as K
+from tensorflow.python.keras import backend as K
+from tensorflow.python.keras.backend import eager_learning_phase_scope
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout
 import scipy.stats
@@ -22,24 +23,24 @@ class output:
         self.upper = upper
         self.ci = ci
         self.mse = mse
-        
-        
-def predict_with_uncertainty(model, testdata, ci=0.95,n_iter=100):
-    func = K.function(model.inputs + [K.learning_phase()], model.outputs)
 
-    result = []
-
-    for i in range(n_iter):
-        result.append(func([testdata] + [1])[0])
-        
-    result = np.array(result)
-    predmean = result.mean(axis=0).reshape(-1,)
-    predsd = result.std(axis=0).reshape(-1,)
-    lowerCI = predmean - scipy.stats.norm.ppf(1-0.5*(1-ci))*predsd
-    upperCI = predmean + scipy.stats.norm.ppf(1-0.5*(1-ci))*predsd
-    return np.exp(predmean), np.exp(lowerCI), np.exp(upperCI)
   
+def predict_with_uncertainty(model, testdata, ci=0.95, n_iter=100):
+    func = K.function([model.input] , [model.output])
+    with eager_learning_phase_scope(value=1):
+        result = []
+        for i in range(n_iter):
+            print
+            result.append(func([testdata]))
+            
+        result = np.array(result)
+        predmean = result.mean(axis=0).reshape(-1,)
+        predsd = result.std(axis=0).reshape(-1,)
+        lowerCI = predmean - scipy.stats.norm.ppf(1-0.5*(1-ci))*predsd
+        upperCI = predmean + scipy.stats.norm.ppf(1-0.5*(1-ci))*predsd
+        return np.exp(predmean), np.exp(lowerCI), np.exp(upperCI)
 
+    
 def deep_quantreg(train_df,test_df,layer=2,node=300,n_epoch=100,bsize=64,acfn="sigmoid",opt="Adam",uncertainty=True,dropout=0.2,tau=0.5,verbose = 0):
     X_train = train_df["X"]
     Y_train = train_df["Y"]
