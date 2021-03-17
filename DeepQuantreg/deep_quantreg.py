@@ -25,7 +25,7 @@ class output:
         
         
 def predict_with_uncertainty(model, testdata, ci=0.95,n_iter=100):
-    func = K.function([model.inputs] + [K.learning_phase()], model.outputs)
+    func = K.function(model.inputs + [K.learning_phase()], model.outputs)
 
     result = []
 
