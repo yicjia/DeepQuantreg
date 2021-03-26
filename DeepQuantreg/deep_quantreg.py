@@ -17,12 +17,13 @@ import scipy.stats
 from .utils import weighted_loss, get_ci, get_mse
 
 class output:
-    def __init__(self, predQ, lower, upper, ci, mse):
+    def __init__(self, predQ, lower, upper, ci, mse, ql):
         self.predQ = predQ
         self.lower = lower
         self.upper = upper
         self.ci = ci
         self.mse = mse
+        self.ql = ql
 
   
 def predict_with_uncertainty(model, testdata, ci=0.95, n_iter=100):
@@ -71,6 +72,7 @@ def deep_quantreg(train_df,test_df,layer=2,node=300,n_epoch=100,bsize=64,acfn="s
     Qpred = np.reshape(Qpred, n1)
     ci = get_ci(Y_train,Qpred,E_train)
     mse = get_mse(np.log(Y_train),np.log(Qpred),E_train)
+    ql = get_ql(np.log(Y_train),np.log(Qpred),E_train,np.log(186))
     
     if uncertainty==False: 
         Qpred2 = np.exp(model.predict(X_test))
@@ -82,13 +84,12 @@ def deep_quantreg(train_df,test_df,layer=2,node=300,n_epoch=100,bsize=64,acfn="s
     
     ci2 = get_ci(Y_test,Qpred2,E_test)
     mse2 = get_mse(np.log(Y_test),np.log(Qpred2),E_test)
+    ql2 = get_ql(np.log(Y_test),np.log(Qpred2),E_testnp.log(186))
         
     print( 'Concordance Index for training dataset:', ci)
-    print( 'MSE for training dataset:', mse)
     print( 'Concordance Index for test dataset:', ci2)
-    print( 'MSE for test dataset:', mse2)
     
-    o = output(Qpred2, lowerCI, upperCI, ci2, mse2)
+    o = output(Qpred2, lowerCI, upperCI, ci2, mse2, ql2)
 
 
     return o
