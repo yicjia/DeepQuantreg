@@ -52,7 +52,7 @@ You can get the predicted quantiles and its prediction interval by calling:
     result.lower
     result.upper
     
-It prints our the C-index and MSE, but you can also get them by calling:
+You can get the prediction performance by calling:
     
     result.ci
     result.mse
