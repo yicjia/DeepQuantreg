@@ -25,12 +25,12 @@ Tensorflow, Keras, lifelines, sklearn, scipy, and all of their respective depend
 
 ## Example
 
-# Using Google Colab
-Here is a tutorial on Google Colab, where you can utilized GPU for free: [DeepQuantreg_GitHub.ipynb](https://github.com/yicjia/DeepQuantreg/blob/main/DeepQuantreg_GitHub.ipynb)	<a href="https://colab.research.google.com/drive/1V354xQlebqikDI4xhTPwgAg3LLPQhayq?usp=sharing">
+### Using Google Colab
+Here is a tutorial on Google Colab, where you can utilized GPU for free <a href="https://colab.research.google.com/drive/1V354xQlebqikDI4xhTPwgAg3LLPQhayq?usp=sharing">
   	<img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 	</a>
 
-# Using your own machine
+### Using your own machine
 First, open Python and import the pacakge:
 
     from DeepQuantreg import utils as utils
