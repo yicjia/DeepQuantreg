@@ -48,13 +48,13 @@ def deep_quantreg(train_df,test_df,layer=2,node=300,n_epoch=100,bsize=64,acfn="s
     E_train = train_df["E"]
     W_train = train_df["W"]
     n1 = np.shape(Y_train)[0]
-    u1 = np.max(Y_train[E_train==0])
+    u1 = np.max(Y_train[E_train==0]) // 1
     
     X_test = test_df["X"]
     Y_test = test_df["Y"]
     E_test = test_df["E"]
     n2 = np.shape(Y_test)[0]
-    u2 = np.max(Y_train[E_train==0])
+    u2 = np.max(Y_train[E_train==0]) // 1
     
     
     model = Sequential()
