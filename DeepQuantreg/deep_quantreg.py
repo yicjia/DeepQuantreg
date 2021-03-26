@@ -14,7 +14,7 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout
 import scipy.stats
 
-from .utils import weighted_loss, get_ci, get_mse
+from .utils import weighted_loss, get_ci, get_mse, get_ql
 
 class output:
     def __init__(self, predQ, lower, upper, ci, mse, ql):
