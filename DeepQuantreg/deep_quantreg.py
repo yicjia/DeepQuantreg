@@ -74,7 +74,7 @@ def deep_quantreg(train_df,test_df,layer=2,node=300,n_epoch=100,bsize=64,acfn="s
     Qpred = np.reshape(Qpred, n1)
     ci = get_ci(Y_train,Qpred,E_train)
     mse = get_mse(np.log(Y_train),np.log(Qpred),E_train)
-    ql = get_ql(np.log(Y_train),np.log(Qpred),E_train,np.log(u1))
+    ql = get_ql(np.log(Y_train),np.log(Qpred),E_train,tau,np.log(u1))
     
     if uncertainty==False: 
         Qpred2 = np.exp(model.predict(X_test))
@@ -86,7 +86,7 @@ def deep_quantreg(train_df,test_df,layer=2,node=300,n_epoch=100,bsize=64,acfn="s
     
     ci2 = get_ci(Y_test,Qpred2,E_test)
     mse2 = get_mse(np.log(Y_test),np.log(Qpred2),E_test)
-    ql2 = get_ql(np.log(Y_test),np.log(Qpred2),E_test,np.log(u2))
+    ql2 = get_ql(np.log(Y_test),np.log(Qpred2),E_test,tau,np.log(u2))
         
     print( 'Concordance Index for training dataset:', ci)
     print( 'Concordance Index for test dataset:', ci2)
