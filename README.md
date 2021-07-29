@@ -151,5 +151,7 @@ organize_data(df,time,event,trt)
 organize_data returns a dictionary containing "Y": the follow-up time, "E": the event indicator, "X": the covariates matrix, and "W": IPCW weights
 
 # 
-### If you use DeepQuantreg in your research, please consider citing
+## Reference
+
+### If you use DeepQuantreg in your research, please consider citing:
 Jia, Y., & Jeong, J. H. (2021). Deep Learning for Quantile Regression under Right Censoring: DeepQuantreg. Computational Statistics and Data Analysis, doi: https://doi.org/10.1016/j.csda.2021.107323.
