@@ -150,7 +150,7 @@ organize_data(df,time,event,trt)
 ### Returns
 organize_data returns a dictionary containing "Y": the follow-up time, "E": the event indicator, "X": the covariates matrix, and "W": IPCW weights
 
-# 
+
 ## Reference
 
 ### If you use DeepQuantreg in your research, please consider citing:
