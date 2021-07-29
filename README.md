@@ -4,7 +4,7 @@ DeepQuantreg implements a deep neural network to the quantile regression for sur
 
 DeepQuantreg shows that the deep learning method could be flexible enough to predict nonlinear patterns more accurately compared to the traditional quantile regression, emphasizing practicality of the method for censored survival data. 
 
-Please refer to our paper for more details: https://www.sciencedirect.com/science/article/pii/S0167947321001572
+Please refer to our paper for more details: https://doi.org/10.1016/j.csda.2021.107323.
 
 
 ## Installation:
