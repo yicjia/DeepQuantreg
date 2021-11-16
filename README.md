@@ -156,12 +156,13 @@ organize_data returns a dictionary containing "Y": the follow-up time, "E": the 
 ### If you use DeepQuantreg in your research, please consider citing:
 Jia, Y., & Jeong, J. H. (2021). Deep Learning for Quantile Regression under Right Censoring: DeepQuantreg. *Computational Statistics & Data Analysis*, 107323.
 ```
-@article{jia2021deep,
+@article{jia2022deep,
   title={Deep learning for quantile regression under right censoring: DeepQuantreg},
   author={Jia, Yichen and Jeong, Jong-Hyeon},
   journal={Computational Statistics \& Data Analysis},
+  volume={165},
   pages={107323},
-  year={2021},
+  year={2022},
   publisher={Elsevier}
 }
 ```
